@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const Title = styled.h3``;
+export const Title = styled.h3`
+  margin: 0 10px;
+`;
 export const Textarea = styled.textarea`
   height: 40px;
   width: 100%;
@@ -31,14 +33,12 @@ export const ContainerError = styled.div`
   }
 `;
 export const Container = styled.div`
-  width: 33%;
+  width: 100%;
   padding: 0 4px;
   display: flex;
-  flex-direction: column;
-  h3 {
-    width: 100%;
-    text-align: center;
-  }
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
 export const Start = styled.button`
   height: 40px;

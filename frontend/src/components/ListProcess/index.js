@@ -1,12 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import { List, Button } from './styles';
+import { List, Button } from "./styles";
 
 function ListProcess() {
-    function handleProcess(e){
-        console.log(e.target.value);
-    }
-  return <List>
+  function handleProcess(e) {
+    console.log(e.target.value);
+  }
+  return (
+    <List>
+      <h3>Processos</h3>
       <Button>Processo 1</Button>
       <Button className="selected">Processo 2</Button>
       <Button>Processo 3</Button>
@@ -17,7 +19,8 @@ function ListProcess() {
       <Button>Processo 8</Button>
       <Button>Processo 9</Button>
       <Button>Processo 10</Button>
-  </List>;
+    </List>
+  );
 }
 
 export default ListProcess;
