@@ -1,15 +1,12 @@
 'use strict';
 
-const { sequelize } = require("../../models/Tempo");
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('tempo', {
-      codigo: {
+    await queryInterface.createTable('erro_detalhe', {
+      id_erro: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
-          model: 'processo',
+          model: 'erro',
           key: 'codigo'
         }
       },
@@ -19,16 +16,16 @@ module.exports = {
       id_usuario: {
         type: Sequelize.INTEGER,
       },
-      tempo: {
-        type: Sequelize.STRING,
-      },
       data: {
-        type: Sequelize.DATEONLY
-      }      
+        type: Sequelize.DATEONLY,
+      },
+      qtd_erro: {
+        type: Sequelize.INTEGER,
+      }
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('tempo');
+    await queryInterface.dropTable('erro_detalhe');
   }
 };

@@ -3,7 +3,7 @@ const dbConfig  = require('../config/database');
 
 const Processo = require('../models/Processo');
 const Tempo = require('../models/Tempo');
-const Companies = require('../models/Companies');
+const Empresa = require('../models/Empresa');
 
 const database = new Sequelize(dbConfig);
 
@@ -13,7 +13,7 @@ Processo.removeAttribute('id');
 Tempo.init(database);
 Tempo.removeAttribute('id');
 
-Companies.init(database);
-Companies.removeAttribute('d');
+Empresa.init(database);
+Empresa.removeAttribute('id');
 
 module.exports = database;

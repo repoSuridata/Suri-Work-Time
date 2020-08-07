@@ -10,7 +10,8 @@ class Processo extends Model {
         }, {
             sequelize: connection,
             freezeTableName: true,
-            timestamps: false
+            timestamps: false,
+            modelName: 'processo'
         })
     }
 }

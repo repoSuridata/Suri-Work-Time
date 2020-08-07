@@ -2,10 +2,10 @@ const Tempo = require('../models/Tempo')
 
 module.exports = {
     async create(req, res){
-        const { codigo, nome, descricao } = req.body;
+        const { tempo, data } = req.body;
 
-        const tempo = await Tempo.create({ codigo, nome, descricao });
+        const tempo_dados = await Tempo.create({ tempo, data });
 
-        return res.json(tempo);
+        return res.json(tempo_dados);
     }
 }
