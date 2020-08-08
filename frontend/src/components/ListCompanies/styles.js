@@ -14,10 +14,8 @@ export const Table = styled.table`
     flex-direction: column;
     justify-content: center;
     align-items: left;
-    border-left: 1px solid #999;
-  }
-  .tr {
-    padding-top: 20px;
+    border-left: 0.3px solid #999;
+    border-bottom: 0.3px solid #999;
   }
   tr {
     margin: 10px;
