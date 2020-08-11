@@ -14,8 +14,11 @@ class Erro extends Model {
             freezeTableName: true,
             timestamps: false,
             modelName: 'erro'
-        })
+        });
     }   
+    static associate(models){
+        this.belongsTo(models.erro_detalhe, { foreignKey: 'codigo'});
+    }
 }
 
 

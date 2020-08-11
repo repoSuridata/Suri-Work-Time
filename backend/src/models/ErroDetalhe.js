@@ -17,7 +17,7 @@ class ErroDetalhe extends Model {
     }
 
     static associate(models){
-        this.belongsTo(models.erro, { foreignKey: 'codigo' });
+        this.belongsTo(models.erro, { foreignKey: 'id_erro' });
     }
 }
 

@@ -14,6 +14,7 @@ routes.post('/erro', ErroController.create);
 
 routes.get('/empresa', EmpresaController.list);
 routes.get('/tempo', TempoController.list);
+routes.get('/erro', ErroController.list);
 
 
 

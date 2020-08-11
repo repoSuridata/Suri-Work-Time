@@ -20,7 +20,10 @@ Tempo.removeAttribute('id')
 
 Processo.associate(database.models)
 
+Erro.associate(database.models)
+
 ErroDetalhe.associate(database.models)
+ErroDetalhe.removeAttribute('id')         
 
 
 module.exports = database;

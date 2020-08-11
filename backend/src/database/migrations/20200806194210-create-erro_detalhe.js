@@ -4,7 +4,8 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('erro_detalhe', {
       id_erro: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER,        
+        autoIncrement: true,
         references: {
           model: 'erro',
           key: 'codigo'
@@ -18,9 +19,11 @@ module.exports = {
       },
       data: {
         type: Sequelize.DATEONLY,
+        allowNull: false
       },
       qtd_erro: {
         type: Sequelize.INTEGER,
+        allowNull: false
       }
     });
   },

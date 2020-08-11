@@ -30,15 +30,19 @@ module.exports = {
             return res.status(400).json({ error: "Formato da data incorreto. Use AAAA-MM-DD para um formato válido" });
         }
 
-        // Registro dos dados no Banco
-        const tempo_dados = await Tempo.create({ 
-            tempo,
-            data,
-            codigo, 
-            id_empresa, 
-            id_usuario,
-            id_processo 
-        });
+        try{
+            // Registro dos dados no Banco
+            const tempo_dados = await Tempo.create({ 
+                tempo,
+                data,
+                codigo, 
+                id_empresa, 
+                id_usuario,
+                id_processo 
+            });
+        } catch (err){
+            return res.json(err);
+        }
         
         return res.json(tempo_dados);
     },
