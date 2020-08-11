@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
-class ErroDetalhe extends Model {
+class OcorrenciaErro extends Model {
     static init(connection){
         super.init({
             id_erro: DataTypes.INTEGER,
@@ -12,7 +12,7 @@ class ErroDetalhe extends Model {
             sequelize: connection,
             freezeTableName: true,
             timestamps: false,
-            modelName: 'erro_detalhe',
+            modelName: 'ocorrencia_erro',
         });
     }
 
@@ -21,4 +21,4 @@ class ErroDetalhe extends Model {
     }
 }
 
-module.exports = ErroDetalhe;
+module.exports = OcorrenciaErro;

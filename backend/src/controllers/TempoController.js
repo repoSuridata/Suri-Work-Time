@@ -20,9 +20,6 @@ module.exports = {
         if(!tempo){
             return res.status(400).json({ error: "Tempo não pode ser Nulo" });
         }
-        if(!data){
-            return res.status(400).json({ error: "Data não pode ser Nulo" });
-        }
         if(codigo < 1 || codigo > 12){
             return res.status(400).json({ error: "Informe um código de processo válido. Os códigos válidos estão entre 1 e 12" });
         }

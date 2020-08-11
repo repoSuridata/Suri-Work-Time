@@ -2,10 +2,9 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('erro_detalhe', {
+    await queryInterface.createTable('ocorrencia_erro', {
       id_erro: {
         type: Sequelize.INTEGER,        
-        autoIncrement: true,
         references: {
           model: 'erro',
           key: 'codigo'
@@ -29,6 +28,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('erro_detalhe');
+    await queryInterface.dropTable('ocorrencia_erro');
   }
 };
