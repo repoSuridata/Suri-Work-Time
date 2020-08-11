@@ -10,7 +10,7 @@ export const List = styled.ul`
   }
 `;
 
-export const Button = styled.li`
+export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;

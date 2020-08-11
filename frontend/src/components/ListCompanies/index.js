@@ -1,93 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { Table } from './styles';
+import { Table } from "./styles";
 
-function ListCompanies() {
-  const [operators, setOperators] = useState([]);
-  const [companies, setCompanies] = useState([]);
-  return(
-      <Table cellPadding={0} cellSpacing={0}>
-          <thead>
-            <tr>
-                <th>Operadora</th>
-                <th>Empresas</th>
-            </tr>
-          </thead>
-          <tbody>
-              <br />
-              <tr>
-                <td className="operator"><input type="checkbox" />Operadora 1</td>
-                <td className="companies">
-                    <td><input type="checkbox" />Empresa 1</td>
-                    <td><input type="checkbox" />Empresa 2</td>
-                    <td><input type="checkbox" />Empresa 3</td>
+function ListCompanies({ companies }) {
+  const [selectedOperator, setSelectedOperator] = useState();
+  const [selectedCompanies, setSelectedCompanies] = useState([]);
+
+  function handleSelectedCompany(company) {
+    setSelectedCompanies([...selectedCompanies, company]);
+  }
+
+  function handleSelectedCompanies(operator, companies) {
+    setSelectedOperator(operator);
+    setSelectedCompanies(companies);
+  }
+  return (
+    <Table cellPadding={0} cellSpacing={0}>
+      <thead>
+        <tr>
+          <th>Operadora</th>
+          <th>Empresas</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Object.keys(companies).map((operator, i) => (
+          <tr key={i}>
+            <td>
+              <input
+                type="checkbox"
+                onChange={(e) =>
+                  handleSelectedCompanies(operator, companies[operator])
+                }
+                checked={selectedOperator === operator ? true : false}
+              />
+              {operator}
+            </td>
+            <td className="companies">
+              {companies[operator].map((company, j) => (
+                <td key={j}>
+                  <input
+                    type="checkbox"
+                    onChange={(e) => handleSelectedCompany(company)}
+                    checked={selectedCompanies.includes(company) ? true : false}
+                  />
+                  {company}
                 </td>
-              </tr>
-              <br />
-              <tr>
-                <td className="operator"><input type="checkbox" />Operadora 1</td>
-                <td className="companies">
-                    <td><input type="checkbox" />Empresa 1</td>
-                    <td><input type="checkbox" />Empresa 2</td>
-                    <td><input type="checkbox" />Empresa 3</td>
-                </td>
-              </tr>
-              <br />
-              <tr>
-                <td className="operator"><input type="checkbox" />Operadora 1</td>
-                <td className="companies">
-                    <td><input type="checkbox" />Empresa 1</td>
-                    <td><input type="checkbox" />Empresa 2</td>
-                    <td><input type="checkbox" />Empresa 3</td>
-                </td>
-              </tr>
-              <br />
-              <tr>
-                <td className="operator"><input type="checkbox" />Operadora 1</td>
-                <td className="companies">
-                    <td><input type="checkbox" />Empresa 1</td>
-                    <td><input type="checkbox" />Empresa 2</td>
-                    <td><input type="checkbox" />Empresa 3</td>
-                </td>
-              </tr>
-              <br />
-              <tr>
-                <td className="operator"><input type="checkbox" />Operadora 1</td>
-                <td className="companies">
-                    <td><input type="checkbox" />Empresa 1</td>
-                    <td><input type="checkbox" />Empresa 2</td>
-                    <td><input type="checkbox" />Empresa 3</td>
-                </td>
-              </tr>
-              <br />
-              <tr>
-                <td className="operator"><input type="checkbox" />Operadora 1</td>
-                <td className="companies">
-                    <td><input type="checkbox" />Empresa 1</td>
-                    <td><input type="checkbox" />Empresa 2</td>
-                    <td><input type="checkbox" />Empresa 3</td>
-                </td>
-              </tr>
-              <br />
-              <tr>
-                <td className="operator"><input type="checkbox" />Operadora 1</td>
-                <td className="companies">
-                    <td><input type="checkbox" />Empresa 1</td>
-                    <td><input type="checkbox" />Empresa 2</td>
-                    <td><input type="checkbox" />Empresa 3</td>
-                </td>
-              </tr>
-              <br />
-              <tr>
-                <td className="operator"><input type="checkbox" />Operadora 1</td>
-                <td className="companies">
-                    <td><input type="checkbox" />Empresa 1</td>
-                    <td><input type="checkbox" />Empresa 2</td>
-                    <td><input type="checkbox" />Empresa 3</td>
-                </td>
-              </tr>
-          </tbody>
-      </Table>
+              ))}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
   );
 }
 
