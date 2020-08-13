@@ -8,13 +8,17 @@ module.exports = {
     });
 
     data = {};
+
     empresas.forEach((e) => {
       data[e.dataValues.operator] = [];
     });
     empresas.forEach((e) => {
-      data[e.dataValues.operator].push(e.dataValues.nickname);
+      data[e.dataValues.operator].push({
+        "id": e.dataValues.d,
+        "Empresa": e.dataValues.nickname
+      });
     });
 
     return res.json(data);
-  },
+  }
 };
