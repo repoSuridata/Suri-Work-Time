@@ -10,7 +10,7 @@ import {
   Textarea,
 } from "./styles";
 
-function ListProcess() {
+function ListProcess({ onSubmit }) {
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
 
@@ -23,12 +23,19 @@ function ListProcess() {
     if (isActive) {
       interval = setInterval(() => {
         setSeconds((seconds) => seconds + 1);
+        localStorage.setItem("time", seconds + 1);
       }, 1000);
     } else if (!isActive && seconds !== 0) {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
   }, [isActive, seconds]);
+
+  async function handleSubmit() {
+    await onSubmit({
+      tempo: seconds,
+    });
+  }
 
   return (
     <Container>
@@ -37,8 +44,8 @@ function ListProcess() {
       <Timer type="text" onChange={() => {}} value={seconds} />
       <br />
       <br />
-      <Start>Concluido</Start>
-      <Start>Em andamento</Start>
+      <Start onClick={handleSubmit}>Concluido</Start>
+      <Start onClick={handleSubmit}>Em andamento</Start>
       <br />
       <br />
       <Title>Erros</Title>

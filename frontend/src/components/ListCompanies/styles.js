@@ -1,33 +1,34 @@
 import styled from "styled-components";
 
-export const Table = styled.table`
+export const Table = styled.div`
   width: 33%;
   margin-top: 2px;
   margin-right: 5px;
   background-color: #e6e6e6;
-  .operator {
-    text-align: center;
+  .tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
   }
+  .th {
+    font-weight: 600;
+  }
+  .th,
+  .td,
   .companies {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: left;
-    border-left: 0.3px solid #999;
-    border-bottom: 0.3px solid #999;
-  }
-  tr {
-    margin: 10px;
-  }
-  th,
-  td {
-    text-align: left;
     line-height: 25px;
-    margin-left: 15px;
+    padding-left: 5px;
   }
-  th input[type="checkbox"],
-  td input[type="checkbox"] {
+  .td {
+    display: flex;
+    align-items: center;
+  }
+  .td,
+  .companies {
+    border-bottom: 1px solid #abaaaa;
+  }
+  .th input[type="checkbox"],
+  .td input[type="checkbox"] {
     margin-right: 5px;
   }
 `;

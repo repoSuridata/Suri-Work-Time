@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { Table } from "./styles";
 
-function ListCompanies({ companies }) {
+function ListCompanies({ companies, onSubmit }) {
   const [selectedOperator, setSelectedOperator] = useState();
   const [selectedCompanies, setSelectedCompanies] = useState([]);
 
@@ -10,46 +10,47 @@ function ListCompanies({ companies }) {
     setSelectedCompanies([...selectedCompanies, company]);
   }
 
-  function handleSelectedCompanies(operator, companies) {
+  function handleSelectedCompanies(operator, companies, index_company) {
     setSelectedOperator(operator);
     setSelectedCompanies(companies);
+
+    onSubmit({
+      id_empresa: companies,
+    });
   }
   return (
     <Table cellPadding={0} cellSpacing={0}>
-      <thead>
-        <tr>
-          <th>Operadora</th>
-          <th>Empresas</th>
-        </tr>
-      </thead>
-      <tbody>
-        {Object.keys(companies).map((operator, i) => (
-          <tr key={i}>
-            <td>
-              <input
-                type="checkbox"
-                onChange={(e) =>
-                  handleSelectedCompanies(operator, companies[operator])
-                }
-                checked={selectedOperator === operator ? true : false}
-              />
-              {operator}
-            </td>
-            <td className="companies">
-              {companies[operator].map((company, j) => (
-                <td key={j}>
-                  <input
-                    type="checkbox"
-                    onChange={(e) => handleSelectedCompany(company)}
-                    checked={selectedCompanies.includes(company) ? true : false}
-                  />
-                  {company}
-                </td>
-              ))}
-            </td>
-          </tr>
-        ))}
-      </tbody>
+      <div className="tr">
+        <div className="th">Operadora</div>
+        <div className="th">Empresas</div>
+      </div>
+
+      {Object.keys(companies).map((operator, i) => (
+        <div className="tr" key={i}>
+          <div className="td">
+            <input
+              type="checkbox"
+              onChange={(e) =>
+                handleSelectedCompanies(operator, companies[operator])
+              }
+              checked={selectedOperator === operator ? true : false}
+            />
+            {operator}
+          </div>
+          <div className="companies">
+            {companies[operator].map((company, j) => (
+              <div key={j}>
+                <input
+                  type="checkbox"
+                  onChange={(e) => handleSelectedCompany(company)}
+                  checked={selectedCompanies.includes(company) ? true : false}
+                />
+                {company}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
     </Table>
   );
 }

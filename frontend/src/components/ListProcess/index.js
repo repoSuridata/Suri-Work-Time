@@ -2,10 +2,14 @@ import React, { useState } from "react";
 
 import { List, Button } from "./styles";
 
-function ListProcess({ process }) {
+function ListProcess({ process, onSubmit }) {
   const [selectedProcess, setSelectedProcess] = useState(0);
   function handleProcess(e) {
     setSelectedProcess(e.target.value);
+
+    onSubmit({
+      id_processo: e.target.value,
+    });
   }
   return (
     <List>
