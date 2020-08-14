@@ -4,16 +4,31 @@ import { Table } from "./styles";
 
 function ListCompanies({ companies, onSubmit }) {
   const [selectedOperator, setSelectedOperator] = useState();
+  const [selectedCompaniesId, setSelectedCompaniesId] = useState([]);
   const [selectedCompanies, setSelectedCompanies] = useState([]);
 
-  function handleSelectedCompany(company) {
+  function handleSelectedCompany(operator, company) {
+    console.log(company);
+    if (operator !== selectedOperator) {
+      setSelectedOperator(operator);
+    }
+
     setSelectedCompanies([...selectedCompanies, company]);
+    setSelectedCompaniesId([...selectedCompaniesId, company.id]);
+
+    onSubmit({
+      id_empresa: selectedCompanies,
+    });
   }
 
-  function handleSelectedCompanies(operator, companies, index_company) {
-    setSelectedOperator(operator);
-    setSelectedCompanies(companies);
+  function handleSelectedCompanies(operator, companies) {
+    var companiesArray = [];
 
+    setSelectedOperator(operator);
+    Object.keys(companies).map((item) => {
+      companiesArray = [...companiesArray, companies[item].id];
+    });
+    setSelectedCompaniesId(companiesArray);
     onSubmit({
       id_empresa: companies,
     });
@@ -38,14 +53,16 @@ function ListCompanies({ companies, onSubmit }) {
             {operator}
           </div>
           <div className="companies">
-            {companies[operator].map((company, j) => (
-              <div key={j}>
+            {companies[operator].map((company) => (
+              <div key={company.id}>
                 <input
                   type="checkbox"
-                  onChange={(e) => handleSelectedCompany(company)}
-                  checked={selectedCompanies.includes(company) ? true : false}
+                  onChange={(e) => handleSelectedCompany(operator, company)}
+                  checked={
+                    selectedCompaniesId.includes(company.id) ? true : false
+                  }
                 />
-                {company}
+                {company.Empresa}
               </div>
             ))}
           </div>
