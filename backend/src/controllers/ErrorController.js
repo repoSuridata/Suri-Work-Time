@@ -1,4 +1,4 @@
-const Erro = require('../models/Erro')
+const Error = require('../models/Error')
 
 module.exports = {
     async create(req, res){
@@ -12,7 +12,7 @@ module.exports = {
         }
 
         try{
-           await Erro.create({ nome, descricao });
+           await Error.create({ nome, descricao });
            return res.json({ "OK": true });
         } catch (err){
             return res.json(err)
@@ -20,7 +20,7 @@ module.exports = {
     },
     async list(req, res){
         try {
-            const data = await Erro.findAll();
+            const data = await Error.findAll();
 
             return res.json(data);
         } catch (err) {

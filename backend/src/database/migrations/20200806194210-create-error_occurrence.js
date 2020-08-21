@@ -2,25 +2,25 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('ocorrencia_erro', {
-      id_erro: {
+    await queryInterface.createTable('error_occurrence', {
+      error_id: {
         type: Sequelize.INTEGER,        
         references: {
-          model: 'erro',
-          key: 'codigo'
+          model: 'error',
+          key: 'code'
         }
       },
-      id_empresa: {
+      company_id: {
         type: Sequelize.INTEGER,
       },
-      id_usuario: {
+      user_id: {
         type: Sequelize.INTEGER,
       },
-      data: {
+      date: {
         type: Sequelize.DATEONLY,
         allowNull: false
       },
-      qtd_erro: {
+      error_amount: {
         type: Sequelize.INTEGER,
         allowNull: false
       }
@@ -28,6 +28,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('ocorrencia_erro');
+    await queryInterface.dropTable('error_occurrence');
   }
 };

@@ -1,25 +1,25 @@
 const { Model, DataTypes } = require('sequelize');
 
-class Processo extends Model {
+class Process extends Model {
     static init(connection){
         super.init({
-            codigo: {
+            code: {
                 type: DataTypes.INTEGER,
                 primaryKey: true
             },
-            nome: DataTypes.STRING,
+            name: DataTypes.STRING,
             area: DataTypes.STRING,
-            descricao: DataTypes.STRING
+            description: DataTypes.STRING
         }, {
             sequelize: connection,
             freezeTableName: true,
             timestamps: false,
-            modelName: 'processo'
+            modelName: 'process'
         })
     }
     static associate(models){
-        this.hasMany(models.tempo, { foreignKey: 'codigo' });
+        this.hasMany(models.time, { foreignKey: 'process_id' });
     }
 }
 
-module.exports = Processo;
+module.exports = Process;

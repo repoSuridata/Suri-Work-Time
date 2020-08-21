@@ -1,32 +1,34 @@
 'use strict';
 
-const { sequelize } = require("../../models/Tempo");
+const { sequelize } = require("../../models/Time");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('tempo', {
-      codigo: {
+    await queryInterface.createTable('time', {
+      id: {
         type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
         allowNull: false,
+      },
+      company_id: {
+        type: Sequelize.INTEGER,
+      },
+      user_id: {
+        type: Sequelize.INTEGER,
+      },
+      process_id: {
+        type: Sequelize.INTEGER,
         references: {
-          model: 'processo',
-          key: 'codigo'
+          model: 'process',
+          key: 'code'
         }
       },
-      id_empresa: {
-        type: Sequelize.INTEGER,
-      },
-      id_usuario: {
-        type: Sequelize.INTEGER,
-      },
-      id_processo: {
-        type: Sequelize.INTEGER,
-      },
-      tempo: {
+      time: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      data: {
+      date: {
         type: Sequelize.DATEONLY,
         allowNull: false
       }      
@@ -34,6 +36,8 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('tempo');
+    await queryInterface.dropTable('time');
   }
 };
+
+

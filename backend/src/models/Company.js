@@ -1,9 +1,12 @@
 const { Model, DataTypes } = require('sequelize');
 
-class Empresa extends Model {
+class Company extends Model {
     static init(connection){
         super.init({
-            d: DataTypes.INTEGER,
+            id: {
+                type: DataTypes.INTEGER,
+                primaryKey: true
+            },
             nickname: DataTypes.STRING,
             operator: DataTypes.STRING
         }, {
@@ -15,4 +18,4 @@ class Empresa extends Model {
     }
 }
 
-module.exports = Empresa;
+module.exports = Company;

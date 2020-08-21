@@ -1,26 +1,24 @@
 const { Model, DataTypes } = require('sequelize');
 
-class Erro extends Model {
+class Error extends Model {
     static init(connection){
         super.init({
-            codigo:{
+            code:{
                 type: DataTypes.INTEGER,
                 primaryKey: true
             },
-            nome: DataTypes.STRING,
-            descricao: DataTypes.STRING
+            name: DataTypes.STRING,
+            description: DataTypes.STRING
         }, {
             sequelize: connection,
             freezeTableName: true,
             timestamps: false,
-            modelName: 'erro'
+            modelName: 'error'
         });
     }   
     static associate(models){
-        this.hasMany(models.ocorrencia_erro, { foreignKey: 'id_erro' });
+        this.hasMany(models.error_occurrence, { foreignKey: 'error_id' });
     }
 }
 
-
-
-module.exports = Erro;
+module.exports = Error;
