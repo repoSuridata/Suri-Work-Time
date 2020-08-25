@@ -56,5 +56,14 @@ module.exports = {
         }
 
         return res.json(data);
+    },
+    async listAll(req, res){
+        const data = await Time.findAll({
+            include: [{
+                model: Process
+            }]
+        });
+
+        return res.json(data);
     }
 }

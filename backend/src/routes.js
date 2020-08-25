@@ -15,7 +15,7 @@ routes.post('/process', ProcessController.create);
 
 // Rotas de Tempo ===============================================================
 routes.post('/time', TimeController.create);
-routes.get('/time', TimeController.list);
+routes.get('/time', TimeController.listAll);
 routes.get('/time/:company', TimeController.list);
 
 // Rotas de Ocorrencias de Erros ================================================
