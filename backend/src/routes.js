@@ -32,6 +32,7 @@ routes.get('/commentary_rule', RuleCommentaryController.list);
 
 // Rotas de Empresas ============================================================
 routes.get('/company', CompanyController.list);
+routes.get('/company/operator', CompanyController.listByOperator);
 
 
 module.exports = routes;
