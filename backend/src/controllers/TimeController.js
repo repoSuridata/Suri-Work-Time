@@ -39,6 +39,7 @@ module.exports = {
     },
     async list(req, res){
         const { company } = req.params;
+
         const data = await Time.findAll({
             include: [{
                 model: Process
@@ -48,7 +49,12 @@ module.exports = {
                 where: { nickname: company }
             }]
         });
-        
+
+        // Verificando se obj está vazio
+        if(Object.keys(data).length === 0){
+            return res.status(404).json({ error: "Empresa não encontrada ou não há dados disponíveis" });
+        }
+
         return res.json(data);
     }
 }
