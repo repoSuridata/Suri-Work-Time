@@ -22,6 +22,7 @@ class Time extends Model {
     }
     static associate(models){
         this.belongsTo(models.process, { foreignKey: 'process_id' });
+        this.belongsTo(models.companies, { foreignKey: 'company_id' });
     }
 }
 

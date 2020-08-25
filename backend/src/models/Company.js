@@ -16,6 +16,10 @@ class Company extends Model {
             modelName: 'companies'
         })
     }
+    static associate(models){
+        this.hasMany(models.time, { foreignKey: 'process_id' });
+        this.hasMany(models.time, { foreignKey: 'company_id' });
+    }
 }
 
 module.exports = Company;

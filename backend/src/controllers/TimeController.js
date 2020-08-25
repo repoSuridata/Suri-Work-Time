@@ -38,13 +38,14 @@ module.exports = {
         
     },
     async list(req, res){
+        const { company } = req.params;
         const data = await Time.findAll({
             include: [{
                 model: Process
             },
             {
                 model: Company, 
-                where: { nickname: "Vagas" }
+                where: { nickname: company }
             }]
         });
         

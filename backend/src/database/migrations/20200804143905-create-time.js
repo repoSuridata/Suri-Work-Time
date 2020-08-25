@@ -13,6 +13,10 @@ module.exports = {
       },
       company_id: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'companies',
+          key: 'id'
+        }
       },
       user_id: {
         type: Sequelize.INTEGER,
