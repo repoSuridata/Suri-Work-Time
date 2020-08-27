@@ -1,11 +1,13 @@
-const Time = require('../models/Time');
-const Process = require('../models/Process');
-const validacao = require('../helpers/validacao');
-const Company = require('../models/Company');
+const Time          = require('../models/Time');
+const Process       = require('../models/Process');
+const validacao     = require('../helpers/validacao');
+const Company       = require('../models/Company');
+
+const Op = require('sequelize').Op
 
 module.exports = {
     async create(req, res){
-        const { 
+        let { 
             time,
             date,
             company_id, 
@@ -18,8 +20,10 @@ module.exports = {
             return res.status(400).json({ error: "Tempo não pode ser Nulo" });
         }
         if(!validacao.validarData(date)){
-            return res.status(400).json({ error: "Formato da data incorreto. Use AAAA-MM-DD para um formato válido" });
+            return res.status(400).json({ error: "Formato da competencia incorreto. Use AAAA-MM para um formato válido" });
         }
+
+        date += '-01'
 
         try{
             // Registro dos dados no Banco
@@ -38,11 +42,23 @@ module.exports = {
         
     },
     async list(req, res){
-        const { company } = req.params;
+        const { company, process_id, competence } = req.params;
+
+        if(competence.split('-').length != 2 || 
+           competence.split('-')[0].length != 4 || 
+           competence.split('-')[1].length != 2){
+            return res.status(404).json({ error: "A competência deve estar no formato AAAA-MM" });
+        }
 
         const data = await Time.findAll({
+            where: { 
+                date: {
+                    [Op.like]: `%${competence}%`
+                }
+            },
             include: [{
-                model: Process
+                model: Process, 
+                where: { code: process_id }
             },
             {
                 model: Company, 
