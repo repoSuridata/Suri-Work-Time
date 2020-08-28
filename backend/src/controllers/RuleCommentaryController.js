@@ -1,13 +1,13 @@
-const RegraComentario = require('../models/RegraComentario')
+const RuleCommentary = require('../models/RuleCommentary')
 const validacao = require('../helpers/validacao');
 
 module.exports = {
     async create(req, res){
         const {
-            id_empresa,
-            regra,
-            data,
-            comentario 
+            company_id,
+            date,
+            rule,
+            commentary 
         } = req.body;
         
         if(!validacao.validarData(data)){
@@ -15,14 +15,14 @@ module.exports = {
         }
 
         try{
-           await RegraComentario.create({ id_empresa, regra, data, comentario });
+           await RuleCommentary.create({ company_id, date, rule, commentary });
            return res.json({ "OK": true });
         } catch (err){
             return res.json(err)
         }
     },
     async list(req, res){
-        const data = await RegraComentario.findAll();
+        const data = await RuleCommentary.findAll();
 
         return res.json(data);
     }

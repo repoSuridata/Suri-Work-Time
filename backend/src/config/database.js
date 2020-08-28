@@ -1,7 +1,7 @@
 module.exports = {
-    dialect: 'mysql',
-    host: 'localhost',
-    username: 'root',
-    password: '',
-    database: 'suriworktime'   
+  dialect: "mysql",
+  host: process.env.DB_HOST,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DATABASE,
 };
