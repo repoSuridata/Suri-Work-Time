@@ -19,11 +19,6 @@ module.exports = {
         if(!time){
             return res.status(400).json({ error: "Tempo não pode ser Nulo" });
         }
-        if(!validacao.validarData(date)){
-            return res.status(400).json({ error: "Formato da competencia incorreto. Use AAAA-MM para um formato válido" });
-        }
-
-        date += '-01'
 
         try{
             // Registro dos dados no Banco
